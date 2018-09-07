@@ -9,7 +9,7 @@ export const environment = {
     authDomain: 'chat-desktop-app.firebaseapp.com',
     databaseURL: 'https://chat-desktop-app.firebaseio.com',
     projectId: 'chat-desktop-app',
-    storageBucket: '',
+    storageBucket: 'chat-desktop-app.appspot.com',
     messagingSenderId: '1086453516466'
   }
 };
