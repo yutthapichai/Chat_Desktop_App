@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   get currentUserId(): string {
-    return this.authState !== null ? this.authState.uid : '';
+    return this.authState !== null ? this.authState.user.uid : '';
   }
 
   Signup(userCreate) {
@@ -62,22 +62,23 @@ export class AuthService {
   }
 
   Login(userData) {
-    return this.afauth.auth.signInWithEmailAndPassword(userData.email, userData.password)
-    .then(
-      (user) => {
-        console.log(user);
+    this.afauth.auth.signInWithEmailAndPassword(userData.email, userData.password)
+      .then(
+      user => {
         this.authState = user;
-        console.log(this.currentUserId);
         const status = 'online';
         this.setUserStatus(status);
+        // console.log('status 3');
         this.router.navigate(['dashboard']);
       }
     ).catch(e => console.log('Something : ', e.message ));
   }
 
   setUserStatus(data) {
+    // console.log('status 1', this.authState.user.uid);
+    // console.log('status 2', this.currentUserId);
     const statuscollection = this.afstore.doc(`status/${this.currentUserId}`);
-    return statuscollection.update({ status: data }).catch(e => console.log(e));
+    statuscollection.update({ status: data }).catch(e => console.log(e));
   }
 
   logout() {
