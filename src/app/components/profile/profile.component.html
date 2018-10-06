@@ -1,0 +1,16 @@
+<div fxLayout="row" fxLaoutAlign="center">
+  <div fxLayout="column">
+    <img class="centered-and-cropped" src="{{ user.photoURL}}" alt="{{ user.photoURL}}" width="150" height="150">
+    <h3>Nickname: {{ user.displayName }}</h3>
+  </div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center">
+  <span matTooltip="Change your nickname">
+    <button mat-mini-fab color="primary" (click)="updateName()"></button>
+  </span>
+  <span matTooltip="Change profile pic">
+    <button mat-mini-fab color="primary" (click)="fileInput.click()"></button>
+  </span>
+  <input #fileInput type="file" (change)="chooseImage($event)" style="display:none;">
+</div>
